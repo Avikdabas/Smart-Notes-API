@@ -1,0 +1,46 @@
+openapi: "3.0.1"
+info:
+  title: "Smart Notes API"
+  version: "1.0"
+paths:
+  /notes:
+    post:
+      summary: "Create a new note"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:{region}:lambda:path/2015-03-31/functions/{lambda_create_arn}/invocations"
+        httpMethod: "POST"
+        type: "aws_proxy"
+  /notes/{note_id}:
+    get:
+      summary: "Read a note"
+      parameters:
+        - name: "note_id"
+          in: "path"
+          required: true
+          schema: { type: "string" }
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:{region}:lambda:path/2015-03-31/functions/{lambda_read_arn}/invocations"
+        httpMethod: "POST"
+        type: "aws_proxy"
+    put:
+      summary: "Update a note"
+      parameters:
+        - name: "note_id"
+          in: "path"
+          required: true
+          schema: { type: "string" }
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:{region}:lambda:path/2015-03-31/functions/{lambda_update_arn}/invocations"
+        httpMethod: "POST"
+        type: "aws_proxy"
+    delete:
+      summary: "Delete a note"
+      parameters:
+        - name: "note_id"
+          in: "path"
+          required: true
+          schema: { type: "string" }
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:{region}:lambda:path/2015-03-31/functions/{lambda_delete_arn}/invocations"
+        httpMethod: "POST"
+        type: "aws_proxy"
